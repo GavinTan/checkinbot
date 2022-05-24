@@ -3,7 +3,6 @@ import sys
 import base64
 import tempfile
 import pyautogui
-from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.schedulers.qt import QtScheduler
 from PyQt5.QtGui import QIcon
