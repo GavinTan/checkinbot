@@ -34,8 +34,8 @@ def autocheckin():
             win[0].restore()
             
         win[0].moveTo(100, 200)
+        pyautogui.moveTo(200, 300)
         while not pyautogui.locateCenterOnScreen('a.png') and not globals().get('stop_job'):
-            pyautogui.moveTo(200, 300)
             pyautogui.scroll(10)
             
     pyautogui.sleep(1)  
@@ -81,6 +81,8 @@ class MainWindow(QMainWindow):
         
         self.runing_label = QLabel("运行中")
         self.runing_label.setStyleSheet("margin-left: 5px;color: green")
+        self.statusbar.addWidget(self.runing_label, 1)
+        self.runing_label.hide()
 
         self.timer = QtCore.QTimer()
         self.datetime_label = QLabel()
@@ -145,7 +147,6 @@ class MainWindow(QMainWindow):
             globals()['stop_job'] = False
             self.sched.add_job(autocheckin, 'cron', day_of_week=str(self.input_datetime.dateTime().date().dayOfWeek() - 1), hour=self.input_datetime.dateTime().time().hour(), minute=self.input_datetime.dateTime().time().minute(), id='checkin')
             QMessageBox.information(self, '提示', '开启成功！')
-            self.statusbar.addWidget(self.runing_label, 1)
             self.runing_label.show()
 
     def stop(self):
@@ -153,7 +154,7 @@ class MainWindow(QMainWindow):
             globals()['stop_job'] = True
             self.sched.remove_job('checkin')
             QMessageBox.information(self, '提示', '关闭成功！')
-            self.statusbar.removeWidget(self.runing_label)
+            self.runing_label.hide()
         else:
             QMessageBox.warning(self, '提示', '未开启自动签到！')
 
