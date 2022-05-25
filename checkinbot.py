@@ -132,10 +132,11 @@ class MainWindow(QMainWindow):
     
     def show_statusbar_message(self):
         self.datetime_label.setText(QtCore.QDateTime.currentDateTime().toString('yyyy-MM-dd hh:mm:ss dddd'))
-        if self.runing_label.isHidden():
-            self.runing_label.show()
-        else:
-            self.runing_label.hide()
+        if self.sched.get_job('checkin'):
+            if self.runing_label.isHidden():
+                self.runing_label.show()
+            else:
+                self.runing_label.hide()
 
     def start(self):
         if self.sched.get_job('checkin'):
