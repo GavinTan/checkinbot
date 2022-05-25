@@ -12,6 +12,7 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 
 
+
 def autocheckin():
     aimg = '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'
     
@@ -28,8 +29,8 @@ def autocheckin():
     win = pyautogui.getWindowsWithTitle('钉钉')
     if win:
         win[0].restore()
-        # win[0].activate()
-        win32gui.SetForegroundWindow(win[0]._hWnd)
+        win32gui.BringWindowToTop(win[0]._hWnd)
+        win[0].activate()
         win[0].moveTo(100, 200)
         pyautogui.moveTo(200, 300)
         while not pyautogui.locateCenterOnScreen('a.png') and not globals().get('stop_job'):
@@ -68,7 +69,7 @@ class MainWindow(QMainWindow):
         show_action = QAction("打开", self)
         quit_action = QAction("退出", self)
         show_action.triggered.connect(self.showNormal)
-        quit_action.triggered.connect(lambda: (self.stop(), qApp.quit()))
+        quit_action.triggered.connect(lambda: (self.tray_icon.hide(), os._exit(0)))
         tray_menu = QMenu()
         tray_menu.addAction(show_action)
         tray_menu.addAction(quit_action)
@@ -105,7 +106,7 @@ class MainWindow(QMainWindow):
             self.input_datetime.setDateTime(self.sched.get_job('checkin').next_run_time)
             self.statusbar.addWidget(self.runing_label, 1)
         else:
-            self.input_datetime.setTime(QtCore.QTime.fromString("10:00:00", "hh:mm:ss"))
+            self.input_datetime.setTime(QtCore.QTime.fromString("09:00:00", "hh:mm:ss"))
         
     def changeEvent(self, event):
         if event.type() == QtCore.QEvent.WindowStateChange:
