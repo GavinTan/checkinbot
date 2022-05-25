@@ -3,6 +3,7 @@ import sys
 import base64
 import tempfile
 import pyautogui
+import win32gui
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.schedulers.qt import QtScheduler
 from PyQt5.QtGui import QIcon
@@ -27,12 +28,8 @@ def autocheckin():
     win = pyautogui.getWindowsWithTitle('钉钉')
     if win:
         win[0].restore()
-        try:
-            win[0].activate()
-        except:
-            win[0].minimize()
-            win[0].restore()
-            
+        # win[0].activate()
+        win32gui.SetForegroundWindow(win[0]._hWnd)
         win[0].moveTo(100, 200)
         pyautogui.moveTo(200, 300)
         while not pyautogui.locateCenterOnScreen('a.png') and not globals().get('stop_job'):
