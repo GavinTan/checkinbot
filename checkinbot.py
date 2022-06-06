@@ -117,10 +117,9 @@ class MainWindow(QMainWindow):
         if self.sched.get_job('checkin'):
             self.input_datetime.setDateTime(self.sched.get_job('checkin').next_run_time)
             self.statusbar.addWidget(self.runing_label, 1)
-            self.show_log.append(f"<h4 style='color: #9B59B6' align='center'>任务开始运行时间: {self.sched.get_job('checkin').next_run_time.strftime('%Y-%m-%d %H:%M:%S')}</h4>")
         else:
             self.input_datetime.setTime(QtCore.QTime.fromString("09:00:00", "hh:mm:ss"))
-        
+
         trigger.showlog.connect(lambda msg: self.show_log.append(msg))
         
     def changeEvent(self, event):
@@ -161,8 +160,6 @@ class MainWindow(QMainWindow):
             self.sched.add_job(autocheckin, 'cron', day_of_week=str(self.input_datetime.dateTime().date().dayOfWeek() - 1), hour=self.input_datetime.dateTime().time().hour(), minute=self.input_datetime.dateTime().time().minute(), id='checkin')
             QMessageBox.information(self, '提示', '开启成功！')
             self.runing_label.show()
-            self.show_log.append(f"<h4 style='color: #9B59B6' align='center'>任务开始运行时间: {self.sched.get_job('checkin').next_run_time.strftime('%Y-%m-%d %H:%M:%S')}</h4>")
-
 
     def stop(self):
         if self.sched.get_job('checkin'):

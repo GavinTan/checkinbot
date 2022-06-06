@@ -1,1 +1,1 @@
-pyinstaller -Fw --clean -y -i .\icon\icon.ico --add-data ".\\ui\\*;ui" --add-data ".\\icon\*;icon" checkinbot.py
+pyinstaller -Fw -n Ç©µ½ÉñÆ÷ --clean -y -i .\icon\icon.ico --add-data ".\\ui\\*;ui" --add-data ".\\icon\*;icon" checkinbot.py
