@@ -12,4 +12,4 @@ pyinstaller -Fw --clean -y -i .\icon\icon.ico --add-data ".\\ui\\*;ui" --add-dat
 ~~~~
 
 ## 使用
-修改checkinbot.py脚本里的aimg为钉钉群名称截图对应的base64，还需设置屏幕不锁定不然无法正常工作。开启自动签到后会自动切换钉钉对应群里开始检测签到消息匹配到自动点击。
+修改checkinbot.py脚本里的aimg为钉钉群名称截图对应的base64，还需设置屏幕不锁定和睡眠不然无法正常工作。开启自动签到后会自动切换钉钉对应群里开始检测签到消息匹配到自动点击。
